@@ -1,0 +1,399 @@
+Part 1: Research
+Give me five customer avatars for an offer about 
+[
+
+This learning platform is meant to be a Teaching Assistant for Educators and a Learning Assistant for students using AI Employees.  The name of the platform is LearningScience.ai
+
+Gives educators their time back with a 24/7 TA!
+Gives students a 24/7 tutor!
+
+Follows learning science principles.  
+
+]. The avatars will be based off of the Stages of Market Awareness as taught by Eugene Schwartz in his book Breakthrough Advertising. I want one avatar for each stage:
+
+These stages are:
+
+Unaware
+Problem Aware
+Solution Aware
+Product Aware
+Most Aware
+
+The audience is [College Professors] [Meaningfully integrating AI into the classroom in a way that enhances learning in a measurable way]
+
+It’s a [price point (You decide)] [offer (you decide)] that helps [target market (College Profs / HS Teachers, College Students/HS Students] [benefit (you decide)]
+
+Put the avatar in the following format:
+
+Stage of Awareness:
+
+A → Who Are They:
+Name:
+Gender:
+Job:
+Household Income:
+Marital Status:
+Education Level:
+
+B → What They Do & Like:
+Top 3 Brands they wear:
+1-2 Hobbies they have:
+Top 5 Favorite movies:
+Top 5 Favorite books:
+Top 5 visited websites:
+Top 5 relevant social media influencers:
+
+C → Why Are They:
+Main Personality Traits:
+5 Major Values They Hold:
+2 Major Life Victories:
+2 Major Life Failures: 
+
+D → Smart Market Questions
+What keeps them awake at night, eyes open, staring at the ceiling:
+What are they secretly afraid of in life:
+What are the angry about, and who are they angry at:
+Top 3 frustrations they feel every day:
+Biggest secret desire in life:
+Built-in bias to how they make decisions:
+Common words or language unique to them:
+Top 3 complaints about existing solutions:
+
+E → Going Deep
+Top 3 Dominant Negative Emotions:
+Top 3 Dominant Positive Emotions From Solving This Problem:
+Top 3 Beliefs They Hold About The World:
+Biggest Lifestyle Desire:
+
+F → Purchasing Habits
+Top 3 Decision Triggers:
+Prior Purchases For This Pain:
+Price Tolerance For Offer:
+Time Horizon Of Solution:
+
+G → Primary Wants
+Wants to gain:
+Wants to be:
+Wants to do:
+Wants to save:
+Wants to avoid:
+
+H → Empathy Map
+Seeing:
+Thinking:
+Hearing:
+Feeling:
+Saying:
+Doing:
+
+Make sure each avatar is at least 1000 words.
+
+Give me the problem aware avatar
+Part 2: “Dear Diary”
+
+I want you to imagine you are the problem aware avatar. You know [problem that they have], and are beginning to think about it consciously. Take all of the output from the problem aware avatar above, and write me a diary entry from the perspective of that avatar. Focus on their dominant negative emotions. Use visual words & writing, be visceral, be emotional, and be creative.
+
+Part 3: Combine Outputs
+
+(Used with ChatGPT)
+
+Your job:
+
+Read the docs for this landing page UI library: https://magicui.design/docs
+
+I am using the Startup template
+
+Taking everything you know about my app feature and who it's for and the pains / benefits it has, frame me out section-by-section a high-converting, CRO-driven SaaS landing page.
+
+[App Features]
+Paste in App Features Here:
+
+LearnLM & AI Studio: Comprehensive Platform Guide
+Your Core Asset: DrLeeGPT (Forked LearnLM)
+What Makes DrLeeGPT Different from ChatGPT:
+Educational DNA: Built specifically for learning, not general conversation
+Pedagogical Intelligence: Trained on learning science principles, not just language patterns
+Cultural Awareness: Fine-tuned for South Florida's diverse student population
+Emotional Intelligence: Recognizes frustration, confusion, and breakthrough moments
+Learning-First Responses: Every answer is designed to teach, not just inform
+Five Core Educational Superpowers:
+1. Inspiring Active Learning
+What It Does: Creates productive struggle with scaffolded support Professor Perspective: "Instead of students copying answers, they work through problems with guided discovery" Student Experience: "The AI won't give me the answer, but helps me figure it out myself - and I actually remember it" Example: Student asks "What's the derivative of x²?" → AI responds "Let's think about what derivative means first. If x² represents area of a square, what happens to that area when x changes slightly?"
+2. Managing Cognitive Load
+What It Does: Breaks complex information into digestible pieces across multiple formats Professor Perspective: "My students aren't overwhelmed - the AI presents information in just-right chunks" Student Experience: "Complex topics feel manageable because everything builds logically" Example: Teaching supply/demand → AI presents concept verbally, draws simple graph, shows real Miami housing example, then synthesizes all three
+3. Adapting to the Learner
+What It Does: Dynamically adjusts to individual goals, prior knowledge, and cultural background Professor Perspective: "Each student gets personalized instruction that meets them where they are" Student Experience: "The AI remembers I'm pre-med and struggling with math, so it connects biology concepts to familiar examples" Example: For Cuban student learning American history → AI connects to Cuban-American immigration patterns and familiar community leaders
+4. Stimulating Curiosity
+What It Does: Creates engaging questions and connections that motivate continued learning Professor Perspective: "Students start asking 'what if' questions instead of just 'what's the answer'" Student Experience: "I actually want to keep learning because each answer leads to something more interesting" Example: After explaining photosynthesis → "You know how Miami's air feels different near Bayfront Park? What do you think all those trees are doing to create that feeling?"
+5. Deepening Metacognition
+What It Does: Helps students understand their own learning process and progress Professor Perspective: "Students become aware of their thinking patterns and can self-correct" Student Experience: "I understand not just what I'm learning, but how I learn best" Example: "I notice you solved that faster when we used the visual method. What does that tell you about your learning style?"
+Emotional Intelligence Integration
+Text + Emotional Awareness: Recognizes when students are frustrated, excited, confused, or having breakthroughs Adaptive Responses: Adjusts tone, pacing, and approach based on emotional state Cultural Sensitivity: Understands different cultural approaches to learning and authority Example: Detects frustration → "I can sense this is challenging. Let's try a different approach that might click better for you."
+
+Five Core Use Cases
+1. Test Prep
+Professor Perspective: "My students get unlimited practice with immediate, constructive feedback in my teaching style" Student Perspective: "I can practice for hours without feeling judged, and the AI knows exactly what I'm struggling with"
+How It Works:
+Generates practice questions from course materials
+Starts easy, increases difficulty based on success
+Provides detailed explanations for wrong answers
+Tracks progress and identifies weak areas
+Adapts to cultural learning styles and language preferences
+Example: Biology test prep → AI creates scenario-based questions using South Florida ecosystems, adjusts difficulty when student masters basic concepts, provides Spanish explanations when needed
+2. Teaching a Concept
+Professor Perspective: "The AI teaches using my methods and examples, extending my reach to every student 24/7" Student Perspective: "It's like having a patient tutor who explains things in different ways until I get it"
+How It Works:
+Breaks concepts into building blocks
+Uses multiple explanation methods (verbal, visual, experiential)
+Checks understanding before moving forward
+Connects to student's prior knowledge and interests
+Incorporates cultural context and relevant examples
+Example: Teaching calculus limits → Uses familiar Miami traffic patterns to explain approaching but never reaching, draws visual graphs, connects to student's engineering career goals
+3. Releveling
+Professor Perspective: "I can reach students at every academic AND cultural level without extra prep time" Student Perspective: "The content makes sense because it's explained in my language and with examples I understand"
+How It Works:
+Academic Releveling: Adjusts complexity, vocabulary, and assumed knowledge
+Cultural Releveling: Adapts examples, communication style, and learning approaches
+Language Support: Seamlessly switches between English/Spanish/Creole explanations
+Socioeconomic Awareness: Uses accessible examples and acknowledges different backgrounds
+Example: Economics concept for different students:
+Advanced student: Complex market analysis with mathematical models
+ESL Haitian student: Same concept explained through familiar community examples with Creole support
+Struggling student: Basic building blocks with encouraging tone and multiple practice opportunities
+4. Guide Through Activity
+Professor Perspective: "Students get step-by-step guidance through complex assignments with personalized support" Student Perspective: "I never feel stuck because there's always help available, but I still have to do the thinking"
+How It Works:
+Upload any activity, assignment, or lab
+AI provides scaffolded guidance without giving answers
+Adapts hints based on student's approach and progress
+Encourages reflection and self-correction
+Tracks completion and understanding
+Example: Research paper assignment → AI helps with thesis development, source evaluation, outline creation, and revision suggestions while ensuring original student work
+5. Homework Help
+Professor Perspective: "Students get immediate help that teaches rather than enables cheating" Student Perspective: "I can get unstuck at 2 AM and actually understand what I'm doing"
+How It Works:
+Provides guidance, hints, and explanations rather than direct answers
+Teaches problem-solving strategies and thinking processes
+Identifies and addresses misconceptions
+Encourages multiple solution approaches
+Maintains academic integrity while providing support
+Example: Math homework → Instead of solving "5x + 3 = 18", AI asks "What operation would help you isolate x?" and guides discovery process
+
+Core AI Studio Components (Detailed)
+Chat
+Technical Capabilities:
+Multi-turn conversations with memory of previous exchanges
+Can reference uploaded documents and course materials
+Maintains consistent personality/teaching style per professor
+Handles complex academic discussions across disciplines
+For Professors:
+Upload a syllabus → AI can answer student questions about assignments, due dates, grading
+Upload lecture notes → AI becomes a 24/7 TA that explains concepts in your style
+Set specific prompts → AI follows your pedagogical approach (e.g., "always ask for examples before explaining")
+Student Experience:
+"I don't understand derivatives" → AI guides through step-by-step discovery
+"What's the main argument in this reading?" → AI asks probing questions to help student identify it themselves
+Available 24/7, never gets frustrated, adapts to individual learning pace
+Voice Chat (Real-Time/Stream)
+Technical Capabilities:
+Natural conversation flow with minimal latency
+Can interrupt and be interrupted (like real conversation)
+Processes speech in real-time, responds while student is still thinking
+Optional video integration for visual learners
+For Professors:
+Students can have spoken "office hours" with AI version of you
+Pronunciation practice for language courses
+Oral exam practice with consistent, patient feedback
+Accessibility for students who prefer audio learning
+Student Experience:
+Walking to class? Have a study session via earbuds
+Struggling with a concept at 2 AM? Talk it through with AI tutor
+Practice presentations with an AI audience that gives constructive feedback
+Generate Media
+Image Generation:
+Scientific Diagrams: "Show me mitochondria with labeled parts in cartoon style"
+Historical Scenes: "Depict a 1920s South Beach jazz club for my history lesson"
+Abstract Concepts: "Visualize supply and demand curves as a seesaw"
+Custom Illustrations: Match your aesthetic preferences and cultural context
+Audio Creation:
+Convert any text into natural speech (great for accessibility)
+Multiple voice options and languages
+Create audio versions of readings, assignments, or explanations
+Video Generation:
+Short explainer clips from your text prompts
+Visual demonstrations of processes or concepts
+Animated content for complex topics
+For Professors:
+No more hunting for stock images that don't quite fit
+Create visuals that match your exact lesson needs
+Generate content in Spanish/English/Creole for diverse student body
+Make abstract academic concepts visually concrete
+
+Pre-Built Educational Apps (Ready to Use)
+Live Audio + 3D Visuals
+What It Does: As students talk with the AI, 3D graphics react and respond to the conversation Use Cases:
+Chemistry students discussing molecular structures → 3D molecules appear and rotate
+Art history discussions → relevant artwork appears and zooms/highlights
+Math tutoring → equations and graphs draw themselves in real-time
+Dictation/Notes
+What It Does: Converts speech to organized, searchable text Use Cases:
+Lecture capture that's automatically formatted and indexed
+Student note-taking assistance (speaks notes or record the lecture, AI organizes them)
+Interview transcription for research projects
+Voice journaling for reflective assignments
+Video to Learning
+What It Does: Takes any video and creates interactive learning web and mobile applications Use Cases:
+Your old lecture recordings → Interactive lessons with embedded quizzes as a learning web application.
+YouTube content → turned into an interactive application
+Student presentations → gamified!
+Lab demonstrations → Step-by-step applications
+Tiny Cats Explain
+What It Does: Breaks down complex concepts using illustrated cat characters Use Cases:
+Making dense academic material more approachable
+Creating memorable mnemonics and visual associations
+Engaging students who respond well to humor/visual metaphors
+Breaking tension around difficult topics
+Flashcard Maker
+What It Does: Automatically generates study cards from any content Use Cases:
+Upload a textbook chapter → Get comprehensive flashcard deck
+Create vocabulary cards with South Florida cultural examples
+Generate quiz questions from lecture transcripts
+Adaptive cards that focus on student's weak areas
+Video Analyzer
+What It Does: Extracts educational content from video materials Use Cases:
+Analyze student presentation videos for improvement feedback
+Extract key concepts from documentary films for discussion
+Create searchable transcripts of guest lectures
+Generate study guides from recorded zoom / Webex lectures / content
+Themed Avatars - for instance... talk to Socrates
+Rubrics and Grading System
+
+
+Transforming Professor Assets
+What You Can Upload:
+Lecture recordings (Zoom, in-person, any format)
+Course materials (PDFs, Word docs, PowerPoints)
+Syllabi and assignments
+Research papers and publications
+Student work examples (with permission)
+Discussion forum posts
+Email Q&As with students
+What The Platform Creates:
+From Lecture Videos:
+Interactive chat tutor that explains concepts from your lectures
+Searchable transcript with AI-generated discussion questions
+Audio-only versions for accessibility
+Visual summaries and concept maps
+Practice quizzes based on lecture content
+From Course Readings:
+AI tutor that can discuss and analyze the texts
+Generated discussion questions and essay prompts
+Visual aids to explain complex passages
+Vocabulary and concept flashcards
+Study guides tailored to your course objectives
+From Assignments:
+AI that can provide hints and guidance (without giving answers)
+Automated feedback on common mistakes
+Practice problems with varying difficulty
+Step-by-step solution walkthroughs
+Rubric-based assessment suggestions
+
+South Florida Cultural Integration
+What Your Fine-Tuning Adds:
+Local Examples: Uses Miami-Dade businesses for economics lessons, Everglades for ecology
+Cultural Sensitivity: Understands diverse backgrounds of South Florida students
+Language Support: Seamlessly switches between English/Spanish explanations
+Regional Context: References local history, geography, and current events
+Community Connections: Links academic concepts to local internships, jobs, and opportunities
+Practical Impact:
+Higher student engagement through familiar references
+Better comprehension through culturally relevant examples
+Reduced barriers for non-native English speakers
+Stronger connection between academic learning and local career paths
+
+Platform Integration Strategy
+For Individual Professors:
+Upload existing content → AI processes and creates interactive versions
+Set teaching preferences → AI adopts your pedagogical style
+Launch AI teaching assistant → Students get 24/7 support in your voice
+Monitor and adjust → Platform learns from interactions to improve
+For Departments/Institutions:
+Shared AI tutors for foundational courses
+Consistent messaging across multiple course sections
+Resource sharing between faculty
+Analytics dashboard showing student engagement and learning patterns
+Student Experience Flow:
+Struggling with concept → Ask AI tutor for help
+AI guides discovery → Socratic questioning leads to understanding
+Practice reinforcement → Generated exercises solidify learning
+Progress tracking → Both student and professor see improvement
+Continued support → AI available for review, exam prep, further questions
+
+Technical Implementation
+Backend Requirements:
+Integration with Google AI Studio APIs
+Content processing pipeline for uploaded materials
+User management for professors and students
+Analytics and progress tracking
+Cultural customization layer for South Florida context
+User Interface:
+Professor Dashboard: Upload content, configure AI personality, view analytics
+Student Interface: Chat, voice, study tools, progress tracking
+Mobile Optimization: Full functionality on phones/tablets
+Accessibility Features: Screen reader support, high contrast, text sizing
+Scalability Considerations:
+Cloud-based infrastructure for handling multiple simultaneous conversations
+Content delivery network for fast media generation
+Database optimization for quick retrieval of course materials
+Load balancing for peak usage times (exam periods, assignment deadlines)
+
+[Diary Entries] - These should help show the desires and pains of my audience:
+Paste in Diary Entries Here
+
+
+
+
+BONUS PROMPTS:
+
+Ad Creation
+I want you to write a 200-300 word Facebook ad based on the problem aware avatar’s diary entry. Pretend you are an A-list copywriter. Describe all the same emotions, doubts, & beliefs as the avatar. Use the Problem-Agitate-Solution ad writing framework, with the following ad outline:
+
+A: Ask an obvious question where the answer is "yes"
+B: Agitation of pain with 3-5 bullet points highlighting common pains
+C: Tease relief of pain with the offer
+D: Give clarity and details of the offer
+E: Give a risk reversal that makes the offer seem stupid not to take
+F: End with an action-oriented CTA with urgency
+
+Make A Video Script
+I want you to write a video script for Facebook ads based on the problem aware avatar’s diary entry. Pretend you are an A-list copywriter. Describe all the same emotions, doubts, & beliefs as the avatar. Use the following to create your script:
+
+Stage 1: Pattern Interrupt - Grab the user’s attention in the first 20 seconds
+This can be done in one of six ways. Pick which one you think is best based on the problem aware avatar: 
+A: The avatar is moving toward a pleasure / benefit
+B: The avatar is moving away from a pain
+C: Leverage the curiosity bias
+D: Open with a testimonial from an actual customer of the company making the offer
+E: Use an uncommon statistic related to the problem, and make it seem shocking
+Stage 2: Position & Tell Story - build authority & give a reason to watch the ad fully through.
+
+Part A: Position - make this less than 20 seconds. Establish “whats in it for me” for the viewer.
+
+Part B: Story - make this less than 2 minutes. Give the viewer a valuable insight about their pain or desired benefit.
+
+Stage 3: Offer - give a direct and actionable offer with a call to action.
+
+Notes for the script:
+This is a first person script. It will be voiced by the actual owner of the business. The tone should be relaxed and conversational. They should seem like someone actually trying to help the audience. Give me a hook variation for each of the types given in Stage 1 above.
+
+AIDA
+I want you to write a 200-300 word Facebook ad based on the problem aware avatar’s diary entry. Pretend you are an A-list copywriter. Describe all the same emotions, doubts, & beliefs as the avatar. Use the Attention-Interest-Desire-Action ad writing framework
+
+AIDA - Testimonial
+I want you to rewrite the AIDA ad output above. This time, I want you to make it from the perspective of a testimonial from a mom that is similar to the problem aware avatar. This mom actually came into [customer], and is talking about her experience, in the context of the AIDA ad writing framework. The output should be from the 3rd person perspective. The testimonial is from a [audience] named [name]. The "Attention" section of the ad should be a fictitious quote from [name] talking about their experience.
+
+
+
+
+
+
