@@ -93,7 +93,7 @@ const UseCases = () => {
   };
 
   return (
-    <section className="relative bg-white overflow-hidden">
+    <section id="use-cases" className="relative bg-white overflow-hidden">
       {/* Magic UI Dot Pattern Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0 animate-dot-pulse" style={{

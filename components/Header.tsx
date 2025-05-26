@@ -25,6 +25,10 @@ const links: {
     label: "Use Cases",
   },
   {
+    href: "/#apps",
+    label: "Apps",
+  },
+  {
     href: "/#pricing",
     label: "Pricing",
   },
@@ -39,11 +43,14 @@ const Header = () => {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
 
-  // Handle scroll for glassmorphism effect
+  // Handle scroll for glassmorphism effect and back-to-top button
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 10);
+      setShowBackToTop(scrollY > 500);
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -54,6 +61,32 @@ const Header = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [searchParams]);
+
+  // Smooth scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Smooth scroll to section function
+  const scrollToSection = (href: string) => {
+    const targetId = href.replace('/#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const headerOffset = 80; // Account for fixed header height
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setIsOpen(false); // Close mobile menu if open
+  };
 
   return (
     <header 
@@ -80,35 +113,43 @@ const Header = () => {
         <ul className="hidden lg:flex items-center justify-center gap-8 absolute left-1/2 transform -translate-x-1/2">
           {links.map((link) => (
             <li key={link.href} className="group">
-              <Link
+              <a
                 href={link.href}
                 className="relative body-medium text-text-secondary hover:text-brand-blue 
-                         transition-colors duration-300 py-2 px-1"
+                         transition-colors duration-300 py-2 px-1 cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.href);
+                }}
               >
                 {link.label}
                 {/* 21st.dev style hover underline animation */}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-blue 
                                group-hover:w-full transition-all duration-300 ease-out"></span>
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
 
         {/* Right: CTA button with Magic UI Shine Border effect */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link
+          <a
             href="#start-trial"
             className="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold 
                      bg-brand-blue text-white rounded-lg shadow-md hover:shadow-lg
                      transform hover:scale-105 transition-all duration-300 
                      border border-transparent hover:border-brand-blue/20
                      overflow-hidden group"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#start-trial");
+            }}
           >
             <span className="relative z-10">Start Free Trial</span>
             {/* Magic UI Shine Border Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
                           -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-          </Link>
+          </a>
         </div>
 
         {/* Mobile menu button with Magic UI animations */}
@@ -154,33 +195,53 @@ const Header = () => {
                   isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                 }`}
               >
-                <Link
+                <a
                   href={link.href}
                   className="block body-large text-text-secondary hover:text-brand-blue 
                            transition-colors duration-300 py-2"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.href);
+                  }}
                 >
                   {link.label}
-                </Link>
+                </a>
               </li>
             ))}
             {/* Mobile CTA */}
             <li className={`pt-4 transform transition-all duration-300 delay-300 ${
               isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}>
-              <Link
+              <a
                 href="#start-trial"
                 className="inline-flex items-center justify-center w-full px-6 py-3 text-sm font-semibold 
                          bg-brand-blue text-white rounded-lg shadow-md hover:shadow-lg
                          transform hover:scale-105 transition-all duration-300"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("#start-trial");
+                }}
               >
                 Start Free Trial
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
       </div>
+
+      {/* Back to top button */}
+      <button
+        type="button"
+        className={`fixed bottom-6 right-6 z-50 p-2 rounded-full bg-brand-blue/10 text-brand-blue 
+                   transition-all duration-300 ${
+                     showBackToTop ? 'opacity-100' : 'opacity-0'
+                   }`}
+        onClick={scrollToTop}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+        </svg>
+      </button>
     </header>
   );
 };

@@ -95,7 +95,7 @@ const FeaturesAccordion = () => {
   }, []);
 
   return (
-    <section className="relative bg-gray-50 py-24 lg:py-32 overflow-hidden">
+    <section id="features" className="relative bg-gray-50 py-24 lg:py-32 overflow-hidden">
       {/* Magic UI Particles System */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(particleCount)].map((_, i) => (

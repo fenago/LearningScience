@@ -49,7 +49,7 @@ const Testimonials3 = () => {
   }, [testimonials.length]);
 
   return (
-    <section className="relative bg-white overflow-hidden py-24">
+    <section id="testimonials" className="relative bg-white overflow-hidden py-24">
       {/* Magic UI Dot Pattern Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0 animate-dot-pulse" style={{

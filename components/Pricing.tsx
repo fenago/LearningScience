@@ -216,7 +216,7 @@ const Pricing = () => {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden py-24">
+    <section id="pricing" className="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden py-24">
       {/* Magic UI Dot Pattern Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0 animate-dot-pulse" style={{

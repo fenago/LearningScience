@@ -514,7 +514,7 @@ const Apps = () => {
   };
 
   return (
-    <section className="relative bg-gray-50 overflow-hidden">
+    <section id="apps" className="relative bg-gray-50 overflow-hidden">
       {/* Magic UI Dot Pattern Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0 animate-dot-pulse" style={{
