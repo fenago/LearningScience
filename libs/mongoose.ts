@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { ConnectOptions } from "mongoose";
 import User from "@/models/User";
 
 const connectMongo = async () => {

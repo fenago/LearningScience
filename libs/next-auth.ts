@@ -1,10 +1,12 @@
-import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import config from "@/config";
 import connectMongo from "./mongo";
+import { getUserProfile } from "@/libs/userProfile";
+import { UserRole } from "@/types/user";
 
 interface NextAuthOptionsExtended extends NextAuthOptions {
   adapter: any;
@@ -55,8 +57,28 @@ export const authOptions: NextAuthOptionsExtended = {
     session: async ({ session, token }) => {
       if (session?.user) {
         session.user.id = token.sub;
+        
+        // Get user profile with role information
+        try {
+          const userProfile = await getUserProfile(token.sub);
+          if (userProfile) {
+            session.user.role = userProfile.role;
+            session.user.features = userProfile.features;
+          } else {
+            session.user.role = UserRole.FREE;
+          }
+        } catch (error) {
+          console.error('Failed to get user profile in session callback:', error);
+          session.user.role = UserRole.FREE;
+        }
       }
       return session;
+    },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
     },
   },
   session: {
@@ -69,5 +91,3 @@ export const authOptions: NextAuthOptionsExtended = {
     logo: `/icon.png`, // Using the icon from the app root
   },
 };
-
-export default NextAuth(authOptions);
