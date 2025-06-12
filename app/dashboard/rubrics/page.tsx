@@ -105,13 +105,13 @@ export default function RubricsGradingPage() {
     });
   };
 
-  const updateCriterion = (index, field, value) => {
+  const updateCriterion = (index: number, field: string, value: string) => {
     const updated = [...newRubric.criteria];
     updated[index] = { ...updated[index], [field]: value };
     setNewRubric({ ...newRubric, criteria: updated });
   };
 
-  const updateLevel = (criterionIndex, levelIndex, field, value) => {
+  const updateLevel = (criterionIndex: number, levelIndex: number, field: string, value: string | number) => {
     const updated = [...newRubric.criteria];
     updated[criterionIndex].levels[levelIndex] = {
       ...updated[criterionIndex].levels[levelIndex],
@@ -310,7 +310,7 @@ export default function RubricsGradingPage() {
                               <input
                                 type="number"
                                 value={criterion.weight}
-                                onChange={(e) => updateCriterion(criterionIndex, 'weight', parseInt(e.target.value))}
+                                onChange={(e) => updateCriterion(criterionIndex, 'weight', e.target.value.toString())}
                                 className="w-16 px-2 py-1 border border-gray-300 rounded text-sm"
                                 min="1"
                                 max="100"
