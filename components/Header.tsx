@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 import type { JSX } from "react";
 import { useSearchParams } from "next/navigation";
+import { useAuth } from '@/libs/hooks';
+import { signOut } from 'next-auth/react';
 import Link from "next/link";
 import ButtonSignin from "./ButtonSignin";
+import UserRoleDisplay from "./UserRoleDisplay";
 import Logo from "./Logo";
 import config from "@/config";
 
@@ -41,6 +44,7 @@ const links: {
 // Modern Navigation Bar with Magic UI and 21st.dev components
 const Header = () => {
   const searchParams = useSearchParams();
+  const { session, userProfile, isLoading } = useAuth();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
@@ -90,7 +94,7 @@ const Header = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
         isScrolled 
           ? 'backdrop-blur-md bg-white/70 border-b border-white/20 shadow-lg' 
           : 'backdrop-blur-sm bg-white/50'
@@ -131,25 +135,105 @@ const Header = () => {
           ))}
         </ul>
 
-        {/* Right: CTA button with Magic UI Shine Border effect */}
+        {/* Right: User section or Sign In button */}
         <div className="hidden lg:flex items-center gap-4">
-          <a
-            href="#start-trial"
-            className="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold 
-                     bg-brand-blue text-white rounded-lg shadow-md hover:shadow-lg
-                     transform hover:scale-105 transition-all duration-300 
-                     border border-transparent hover:border-brand-blue/20
-                     overflow-hidden group"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#start-trial");
-            }}
-          >
-            <span className="relative z-10">Start Free Trial</span>
-            {/* Magic UI Shine Border Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
-                          -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-          </a>
+          {session?.user ? (
+            <div className="flex items-center gap-3">
+              {/* User Role Display */}
+              <UserRoleDisplay />
+              
+              {/* User Dropdown Menu */}
+              <div className="relative group">
+                <button className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-lg transition-all duration-200">
+                  <span>{session.user.name || 'User'}</span>
+                  <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7M5 19l7-7 7 7" />
+                  </svg>
+                </button>
+                
+                {/* Dropdown Menu */}
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[9999]">
+                  <div className="py-2">
+                    <Link 
+                      href="/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-blue transition-colors"
+                    >
+                      Profile
+                    </Link>
+                    <Link 
+                      href="/dashboard"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-blue transition-colors"
+                    >
+                      Dashboard
+                    </Link>
+                    {/* Show Admin link only for admin users */}
+                    {userProfile?.role === 'ADMIN' && (
+                      <Link 
+                        href="/dashboard?tab=admin"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors"
+                      >
+                        Admin
+                      </Link>
+                    )}
+                    <hr className="my-1 border-gray-200" />
+                    <button
+                      className="flex items-center gap-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-blue transition-colors"
+                      onClick={() => {
+                        // Handle billing logic here if needed
+                        console.log('Billing clicked');
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M2.5 4A1.5 1.5 0 001 5.5V6h18v-.5A1.5 1.5 0 0017.5 4h-15zM19 8.5H1v6A1.5 1.5 0 002.5 16h15a1.5 1.5 0 001.5-1.5v-6zM3 13.25a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zm4.75-.75a.75.75 0 000 1.5h3.5a.75.75 0 000-1.5h-3.5z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Billing
+                    </button>
+                    <button
+                      className="flex items-center gap-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"
+                      onClick={() => signOut({ callbackUrl: "/" })}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
+                          clipRule="evenodd"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          d="M19 10a.75.75 0 00-.75-.75H8.704l1.048-.943a.75.75 0 10-1.004-1.114l-2.5 2.25a.75.75 0 000 1.114l2.5 2.25a.75.75 0 101.004-1.114L8.704 10.75H18.25A.75.75 0 0019 10z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <ButtonSignin 
+              text="Sign In" 
+              extraStyle="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold 
+                       bg-brand-blue text-white rounded-lg shadow-md hover:shadow-lg
+                       transform hover:scale-105 transition-all duration-300 
+                       border border-transparent hover:border-brand-blue/20
+                       overflow-hidden group"
+            />
+          )}
         </div>
 
         {/* Mobile menu button with Magic UI animations */}
@@ -212,18 +296,39 @@ const Header = () => {
             <li className={`pt-4 transform transition-all duration-300 delay-300 ${
               isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}>
-              <a
-                href="#start-trial"
-                className="inline-flex items-center justify-center w-full px-6 py-3 text-sm font-semibold 
-                         bg-brand-blue text-white rounded-lg shadow-md hover:shadow-lg
-                         transform hover:scale-105 transition-all duration-300"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("#start-trial");
-                }}
-              >
-                Start Free Trial
-              </a>
+              {session?.user ? (
+                <div className="space-y-3">
+                  {/* User Role Display */}
+                  <div className="text-center">
+                    <UserRoleDisplay />
+                  </div>
+                  
+                  {/* Mobile Navigation Links */}
+                  <div className="flex flex-col space-y-2">
+                    <Link 
+                      href="/profile"
+                      className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium 
+                               text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all duration-200"
+                    >
+                      Profile
+                    </Link>
+                    <Link 
+                      href="/dashboard"
+                      className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium 
+                               text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all duration-200"
+                    >
+                      Dashboard
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <ButtonSignin 
+                  text="Sign In" 
+                  extraStyle="inline-flex items-center justify-center w-full px-6 py-3 text-sm font-semibold 
+                           bg-brand-blue text-white rounded-lg shadow-md hover:shadow-lg
+                           transform hover:scale-105 transition-all duration-300"
+                />
+              )}
             </li>
           </ul>
         </div>

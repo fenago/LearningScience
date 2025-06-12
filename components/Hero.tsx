@@ -5,11 +5,23 @@ import { useState, useEffect } from 'react';
 const Hero = () => {
   const [animationVisible, setAnimationVisible] = useState(false);
   const [particleCount] = useState(15);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const timer = setTimeout(() => setAnimationVisible(true), 500);
     return () => clearTimeout(timer);
   }, []);
+
+  // Generate deterministic particle data to prevent hydration mismatch
+  const particles = Array.from({ length: particleCount }, (_, i) => ({
+    id: i,
+    left: ((i * 37) % 100), // Deterministic positioning
+    top: ((i * 67) % 100),
+    duration: 4 + ((i * 13) % 4), // Deterministic animation duration
+    delay: (i * 0.3) % 4, // Deterministic delay
+    color: i % 3 === 0 ? 'bg-brand-blue' : i % 3 === 1 ? 'bg-brand-purple' : 'bg-brand-green'
+  }));
 
   return (
     <section className="relative min-h-[90vh] flex items-center bg-hero-gradient overflow-hidden">
@@ -30,23 +42,23 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Magic UI Particles System */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(particleCount)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-2 h-2 rounded-full opacity-40 animate-pulse ${
-              i % 3 === 0 ? 'bg-brand-blue' : i % 3 === 1 ? 'bg-brand-purple' : 'bg-brand-green'
-            }`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${4 + Math.random() * 4}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 4}s`
-            }}
-          ></div>
-        ))}
-      </div>
+      {/* Magic UI Particles System - Only render on client */}
+      {mounted && (
+        <div className="absolute inset-0 overflow-hidden">
+          {particles.map((particle) => (
+            <div
+              key={particle.id}
+              className={`absolute w-2 h-2 rounded-full opacity-40 animate-pulse ${particle.color}`}
+              style={{
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                animation: `float ${particle.duration}s ease-in-out infinite`,
+                animationDelay: `${particle.delay}s`
+              }}
+            ></div>
+          ))}
+        </div>
+      )}
 
       {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-none mx-auto px-[10%] py-20">
@@ -167,9 +179,9 @@ const Hero = () => {
                         key={i}
                         className="absolute w-1 h-1 bg-brand-blue/30 rounded-full animate-pulse"
                         style={{
-                          left: `${20 + Math.random() * 60}%`,
-                          top: `${20 + Math.random() * 60}%`,
-                          animationDelay: `${Math.random() * 2}s`
+                          left: `${20 + (i * 10)}%`,
+                          top: `${20 + (i * 10)}%`,
+                          animationDelay: `${i * 0.5}s`
                         }}
                       ></div>
                     ))}

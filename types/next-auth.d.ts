@@ -1,4 +1,5 @@
 import NextAuth, { DefaultSession } from 'next-auth';
+import { UserRole } from './user';
 
 declare module 'next-auth' {
   /**
@@ -8,6 +9,10 @@ declare module 'next-auth' {
     user: {
       /** The user's id. */
       id: string;
+      /** The user's role. */
+      role?: UserRole;
+      /** The user's feature access. */
+      features?: any;
     } & DefaultSession['user'];
   }
 }
