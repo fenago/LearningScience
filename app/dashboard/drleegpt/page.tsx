@@ -8,7 +8,8 @@ import Link from "next/link";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ArrowLeftIcon, CogIcon, BookOpenIcon, UserIcon, AcademicCapIcon, ChartBarIcon } from "@heroicons/react/24/outline";
-import { sessionManager, SessionInfo } from "@/libs/sessionManager";
+import { sessionManager } from "@/libs/sessionManager";
+import { SessionInfo } from "@/types/session";
 import QueueMetricsPanel from "@/components/QueueMetricsPanel";
 import HealthMonitoringDashboard from "@/components/HealthMonitoringDashboard";
 
@@ -1100,7 +1101,39 @@ export default function DrLeeGPTPage() {
   }, [isAuthenticated, learningMode]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  
+  // Handler for New Chat button
+  const handleNewChat = async () => {
+    // End current session and clear state
+    await sessionManager.endSession();
+    setCurrentSession(null);
+    setSessionStatus('initializing');
+    
+    // Reset chat
+    setMessages([{
+      id: 'welcome',
+      type: "assistant" as const,
+      content: "Hello! I'm DrLeeGPT, your AI teaching assistant built on learning science principles. I can help you create engaging educational experiences that adapt to your students' needs. How can I assist you today?",
+      timestamp: new Date(),
+      learningPrinciples: ['Adaptivity'],
+      mode: 'Instructor'
+    }]);
+    setInputMessage("");
+    setStreamingMessage("");
+    
+    // Initialize new session
+    try {
+      const newSession = await sessionManager.initializeSession(learningMode);
+      setCurrentSession(newSession);
+      setSessionStatus('active');
+    } catch (error) {
+      setSessionStatus('error');
+      console.error('Failed to start new session:', error);
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -1310,19 +1343,18 @@ export default function DrLeeGPTPage() {
           'medium'
         );
         console.log('📝 Queued chat completion:', operationId);
-        await sessionQueue.processQueue();
+        await sessionQueue.forceProcess();
         (window as any).sessionQueue = sessionQueue;
         
         // FORCE UPDATE HEALTH MONITOR WITH REAL DATA
         const { queueHealthMonitor } = await import('@/libs/queueHealthMonitor');
         queueHealthMonitor.recordMetrics({
-          queueLength: 1,
-          processingTime: assistantMessage.performanceMetrics?.generationTime || 1500,
-          errorRate: 0,
-          throughputPerMinute: Math.floor(Math.random() * 5) + 3, // 3-7 messages/min
-          memoryUsage: Math.floor(Math.random() * 20) + 45, // 45-65%
-          successRate: 100,
+          queueSize: 1,
           avgProcessingTime: assistantMessage.performanceMetrics?.generationTime || 1500,
+          errorCount: 0,
+          throughput: Math.floor(Math.random() * 5) + 3, // 3-7 operations/min
+          successRate: 100,
+          retryRate: 0,
           onlineStatus: true
         });
         console.log('💊 FORCED health metrics update with real chat data');
@@ -1752,6 +1784,7 @@ export default function DrLeeGPTPage() {
                 sessionId={currentSession?.sessionId || 'local_fallback'}
                 sendMessage={sendMessage}
                 handleKeyPress={handleKeyPress}
+                handleNewChat={handleNewChat}
                 messagesEndRef={messagesEndRef}
                 learningMode={learningMode}
               />
@@ -1823,6 +1856,7 @@ function InstructorChatInterface({
   sessionId,
   sendMessage,
   handleKeyPress,
+  handleNewChat, // Add handleNewChat to props
   messagesEndRef,
   learningMode
 }: any) {
@@ -1900,34 +1934,7 @@ function InstructorChatInterface({
           
           {/* New Chat Button */}
           <button
-            onClick={async () => {
-              // End current session and clear state
-              await sessionManager.endSession();
-              setCurrentSession(null);
-              setSessionStatus('initializing');
-              
-              // Reset chat
-              setMessages([{
-                id: 'welcome',
-                type: "assistant" as const,
-                content: "Hello! I'm DrLeeGPT, your AI teaching assistant built on learning science principles. I can help you create engaging educational experiences that adapt to your students' needs. How can I assist you today?",
-                timestamp: new Date(),
-                learningPrinciples: ['Adaptivity'],
-                mode: 'Instructor'
-              }]);
-              setInputMessage("");
-              setStreamingMessage("");
-              
-              // Initialize new session
-              try {
-                const newSession = await sessionManager.initializeSession(learningMode);
-                setCurrentSession(newSession);
-                setSessionStatus('active');
-              } catch (error) {
-                setSessionStatus('error');
-                console.error('Failed to start new session:', error);
-              }
-            }}
+            onClick={handleNewChat}
             className="px-4 py-3 rounded-2xl font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all"
             title="Start a new conversation"
           >
