@@ -1,5 +1,3 @@
-import { Suspense, lazy, ReactNode } from 'react';
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
@@ -24,9 +22,6 @@ export const metadata: Metadata = {
 export default function Home(): JSX.Element {
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Header />
-      </Suspense>
       <main>
         {/* LearningScience.ai - Give professors their time back with a 24/7 AI teaching assistant */}
         <Hero />
