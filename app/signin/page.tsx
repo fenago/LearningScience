@@ -1,11 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { signIn, getSession, getProviders } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import config from "@/config";
+
+// Client component that uses useSearchParams
+function SearchParamsHandler({ onParamsReady }: { onParamsReady: (callbackUrl: string) => void }): React.ReactNode {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || config.auth.callbackUrl;
+  
+  // Call the callback with the parsed params
+  useEffect(() => {
+    onParamsReady(callbackUrl);
+  }, [callbackUrl, onParamsReady]);
+  
+  return null; // This component doesn't render anything
+}
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -13,9 +26,13 @@ export default function SignIn() {
   const [emailSent, setEmailSent] = useState(false);
   const [providers, setProviders] = useState<any>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [callbackUrl, setCallbackUrl] = useState(config.auth.callbackUrl);
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || config.auth.callbackUrl;
+
+  // Handler for when search params are ready
+  const handleParamsReady = (url: string) => {
+    setCallbackUrl(url);
+  };
 
   useEffect(() => {
     // Check if user is already signed in
@@ -73,6 +90,10 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Wrap the SearchParams component with Suspense */}
+      <Suspense fallback={null}>
+        <SearchParamsHandler onParamsReady={handleParamsReady} />
+      </Suspense>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 animate-dot-pulse" style={{

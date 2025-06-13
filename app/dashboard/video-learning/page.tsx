@@ -87,7 +87,7 @@ export default function VideoToLearningPage() {
     { name: "Derivative Rules Summary", type: "summary", video: "Calculus: Derivatives Explained", created: "3 days ago" }
   ];
 
-  const handleDrag = (e) => {
+  const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === "dragenter" || e.type === "dragover") {
@@ -97,7 +97,7 @@ export default function VideoToLearningPage() {
     }
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
