@@ -67,12 +67,12 @@ class GeminiService {
     // Get the effective API key (user's key or admin override)
     const effectiveKey = await getEffectiveAPIKey(userId);
     
-    if (!effectiveKey) {
+    if (!effectiveKey || !effectiveKey.key) {
       throw new Error('No API key available. Please add your Gemini API key in your profile.');
     }
 
     // Create new client and cache it
-    const client = new GoogleGenerativeAI(effectiveKey);
+    const client = new GoogleGenerativeAI(effectiveKey.key);
     this.clients.set(userId, client);
     
     return client;
