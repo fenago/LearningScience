@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptionsExtended = {
                 pass: process.env.RESEND_API_KEY,
               },
             },
-            from: config.resend.fromNoReply,
+            from: "no-reply@learningscience.ai",
           }),
         ]
       : []),
